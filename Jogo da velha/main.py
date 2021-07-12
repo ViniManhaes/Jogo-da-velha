@@ -4,9 +4,9 @@ import numpy as np
 size_of_board = 600
 symbol_size = (size_of_board / 3 - size_of_board / 8) / 2
 symbol_thickness = 50
-symbol_X_color = '#EE4035'
-symbol_O_color = '#0492CF'
-Green_color = '#7BC043'
+symbol_X_color = '#db7916'
+symbol_O_color = '#3776ab'
+
 
 
 class Jogo_da_velha():
@@ -82,26 +82,29 @@ class Jogo_da_velha():
             self.X_score += 1
             text = 'X Win'
             color = symbol_X_color
+            text_color = symbol_O_color
         elif self.O_wins:
             self.O_score += 1
             text = 'O Win'
             color = symbol_O_color
+            text_color = symbol_X_color
         else:
             self.tie_score += 1
             text = 'Its a tie'
             color = 'gray'
+            text_color = 'gray'
 
         self.canvas.delete("all")
         self.canvas.create_text(size_of_board / 2, size_of_board / 3, font="cmr 60 bold", fill=color, text=text)
 
         score_text = 'Scores \n'
-        self.canvas.create_text(size_of_board / 2, 5 * size_of_board / 8, font="cmr 40 bold", fill=Green_color,
+        self.canvas.create_text(size_of_board / 2, 5 * size_of_board / 8, font="cmr 40 bold", fill=text_color,
                                 text=score_text)
 
         score_text = 'X Score: ' + str(self.X_score) + '\n'
         score_text += 'O Score: ' + str(self.O_score) + '\n'
-        score_text += 'Tie        : ' + str(self.tie_score)
-        self.canvas.create_text(size_of_board / 2, 3 * size_of_board / 4, font="cmr 30 bold", fill=Green_color,
+        score_text += 'Tie         : ' + str(self.tie_score)
+        self.canvas.create_text(size_of_board / 2, 3 * size_of_board / 4, font="cmr 30 bold", fill=text_color,
                                 text=score_text)
         self.reset_board = True
 
